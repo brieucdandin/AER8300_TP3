@@ -1,0 +1,146 @@
+package Lab3
+public
+
+	with Data_Model;
+	system Satellite
+	end Satellite;
+
+	data radians
+		properties
+			Data_Model::Data_Representation => float;
+	end data;
+	 
+	device SunSensor
+		features
+			rot_x: out data port;
+			rot_y: out data port;
+			rot_z: out data port;
+		    comm: requires bus access CommBus;
+	 	flows
+			fx: flow source rot_x {latency => 1ms .. 2ms;};
+			fy: flow source rot_y {latency => 1ms .. 2ms;};
+			fz: flow source rot_z {latency => 1ms .. 2ms;};
+	end SunSensor;
+	
+	data torque
+		properties
+			Data_Model::Data_Representation => float;
+	end torque;
+	
+	device Torquer
+		features
+			tor_x: in data port torque;
+			tor_y: in data port torque;
+			tor_z: in data port torque;
+			comm: requires bus access CommBus;
+		flows
+			fx: flow sink tor_x {latency => 1ms .. 2ms;};
+			fy: flow sink tor_y {latency => 1ms .. 2ms;};
+			fz: flow sink tor_z {latency => 1ms .. 2ms;};
+	end Torquer;
+
+	process Controller
+		features
+			rot_x: in data port radians;
+			rot_y: in data port radians;
+			rot_z: in data port radians;
+			tor_x: out data port torque;
+			tor_y: out data port torque;
+			tor_z: out data port torque;
+		flows
+			fx: flow path rot_x -> tor_x {latency => 3ms .. 5ms;};
+			fy: flow path rot_y -> tor_y {latency => 3ms .. 5ms;};
+			fz: flow path rot_z -> tor_z {latency => 3ms .. 5ms;};
+	end Controller;
+	
+	
+	device Computer
+		features
+			rot_x_in: in data port radians;
+			rot_y_in: in data port radians;
+			rot_z_in: in data port radians;
+			rot_x_out: out data port radians;
+		  	rot_y_out: out data port radians;
+		  	rot_z_out: out data port radians;
+		 	tor_x_in: in data port torque;
+		  	tor_y_in: in data port torque;
+		  	tor_z_in: in data port torque;
+		  	tor_x_out: out data port torque;
+		  	tor_y_out: out data port torque;
+		  	tor_z_out: out data port torque;
+		  	comm: requires bus access CommBus;
+	end Computer;
+	
+	system implementation Satellite.impl
+		subcomponents
+			sens: device SunSensor;
+			act: device Torquer;
+			cpu: device Computer;
+			contr: process Controller;
+			
+		connections
+			SnCpX: port sens.rot_x -> cpu.rot_x_in;
+			SnCpY: port sens.rot_y -> cpu.rot_y_in;
+			SnCpZ: port sens.rot_z -> cpu.rot_z_in;
+			
+			CpCnX: port cpu.rot_x_out -> contr.rot_x;
+			CpCnY: port cpu.rot_y_out -> contr.rot_y;
+			CpCnZ: port cpu.rot_z_out -> contr.rot_z;
+			
+			CnCpX: port contr.tor_x -> cpu.tor_x_in;
+			CnCpY: port contr.tor_y -> cpu.tor_y_in;
+			CnCpZ: port contr.tor_z -> cpu.tor_z_in;
+			
+			CpAcX: port cpu.tor_x_out -> act.tor_x;
+			CpAcY: port cpu.tor_y_out -> act.tor_y;
+			CpAcZ: port cpu.tor_z_out -> act.tor_z;
+			
+			CommSn: bus access comm <-> sens.comm;
+			CommAc: bus access comm <-> act.comm;
+			CommCp: bus access comm <-> cpu.comm;
+	end Satellite.impl;
+	
+	bus CommBus
+	end CommBus;
+	
+	device implementation SunSensor.impl
+		properties
+			Period => 100ms;
+	end SunSensor.impl;
+	
+	process implementation Torquer.impl
+	end Torquer.impl;
+	
+	device implementation Computer.impl
+	end Computer.impl;
+	
+	
+	thread ControlThread
+		features
+			rot_x: in data port radians;
+			rot_y: in data port radians;
+			rot_z: in data port radians;
+			tor_x: out data port torque;
+			tor_y: out data port torque;
+			tor_z: out data port torque;
+	end ControlThread;
+
+	thread implementation ControlThread.impl
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => 100ms;
+	end ControlThread.impl;
+	
+	process implementation Controller.impl
+		subcomponents
+			worker: thread ControlThread.impl;
+		connections
+			Rx: port rot_x -> worker.rot_x;
+			Ry: port rot_y -> worker.rot_y;
+			Rz: port rot_z -> worker.rot_z;
+			Tx: port worker.tor_x -> tor_x;
+			Ty: port worker.tor_y -> tor_y;
+			Tz: port worker.tor_z -> tor_z;
+	end Controller.impl;
+	
+end Lab3;

@@ -1,0 +1,92 @@
+package hardware
+public
+
+	device Watchdog
+		features
+			-- Ceci est un commentaire.
+		properties
+			-- Ceci est un autre commentaire.
+	end Watchdog;
+
+	device SunSensor
+		features
+			rot_x_b1: out data port;
+			rot_y_b1: out data port;
+			rot_z_b1: out data port;
+		    comm: requires bus access CommBus1;
+			rot_x_b2: out data port;
+			rot_y_b2: out data port;
+			rot_z_b2: out data port;
+		    comm: requires bus access CommBus2;
+	 	flows
+			fx: flow source rot_x {latency => 1ms .. 2ms;};
+			fy: flow source rot_y {latency => 1ms .. 2ms;};
+			fz: flow source rot_z {latency => 1ms .. 2ms;};
+	end SunSensor;
+	
+	device GPSReceiver
+		features
+			pos_x_b1: out data port;
+			pos_y_b1: out data port;
+			pos_z_b1: out data port;
+			comm: requires bus access CommBus1;
+			rot_x_b2: out data port;
+			rot_y_b2: out data port;
+			rot_z_b2: out data port;
+		    comm: requires bus access CommBus2;
+		flows
+			fx: flow source pos_x {latency => 3ms .. 5ms;};
+			fy: flow source pos_y {latency => 3ms .. 5ms;};
+			fz: flow source pos_z {latency => 3ms .. 5ms;};
+	end GPSReceiver;
+	
+	device Torquer
+		features
+			tor_x_b1: in data port torque;
+			tor_y_b1: in data port torque;
+			tor_z_b1: in data port torque;
+			comm: requires bus access CommBus1;
+			tor_x_b2: in data port torque;
+			tor_y_b2: in data port torque;
+			tor_z_b2: in data port torque;
+			comm: requires bus access CommBus2;
+		flows
+			fx: flow sink tor_x {latency => 1ms .. 2ms;};
+			fy: flow sink tor_y {latency => 1ms .. 2ms;};
+			fz: flow sink tor_z {latency => 1ms .. 2ms;};
+	end Torquer;
+	
+	device ReactionWheel
+		features
+			ang_x_b1: in data port torque;
+			ang_y_b1: in data port torque;
+			ang_z_b1: in data port torque;
+			comm: requires bus access CommBus1;
+			ang_x_b2: in data port torque;
+			ang_y_b2: in data port torque;
+			ang_z_b2: in data port torque;
+			comm: requires bus access CommBus2;
+		flows
+			fx: flow sink ang_x {latency => 1ms .. 2ms;};
+			fy: flow sink ang_y {latency => 1ms .. 2ms;};
+			fz: flow sink ang_z {latency => 1ms .. 2ms;};
+	end ReactionWheel;
+	
+	device Computer
+		features
+			rot_x_in: in data port radians;
+			rot_y_in: in data port radians;
+			rot_z_in: in data port radians;
+			rot_x_out: out data port radians;
+		  	rot_y_out: out data port radians;
+		  	rot_z_out: out data port radians;
+		 	tor_x_in: in data port torque;
+		  	tor_y_in: in data port torque;
+		  	tor_z_in: in data port torque;
+		  	tor_x_out: out data port torque;
+		  	tor_y_out: out data port torque;
+		  	tor_z_out: out data port torque;
+		  	comm: requires bus access CommBus;
+	end Computer;
+	
+end hardware;

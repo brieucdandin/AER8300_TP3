@@ -1,0 +1,13 @@
+package datatypes
+public
+	data radians
+		properties
+			Data_Model::Data_Representation => float;
+	end data;
+	
+	data torque
+		properties
+			Data_Model::Data_Representation => float;
+	end torque;
+
+end datatypes;
