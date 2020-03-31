@@ -39,19 +39,7 @@ public
 			fz: flow sink tor_z {latency => 1ms .. 2ms;};
 	end Torquer;
 
-	process Controller
-		features
-			rot_x: in data port radians;
-			rot_y: in data port radians;
-			rot_z: in data port radians;
-			tor_x: out data port torque;
-			tor_y: out data port torque;
-			tor_z: out data port torque;
-		flows
-			fx: flow path rot_x -> tor_x {latency => 3ms .. 5ms;};
-			fy: flow path rot_y -> tor_y {latency => 3ms .. 5ms;};
-			fz: flow path rot_z -> tor_z {latency => 3ms .. 5ms;};
-	end Controller;
+
 	
 	
 	device Computer
@@ -114,6 +102,20 @@ public
 	device implementation Computer.impl
 	end Computer.impl;
 	
+	
+	process Controller
+		features
+			rot_x: in data port radians;
+			rot_y: in data port radians;
+			rot_z: in data port radians;
+			tor_x: out data port torque;
+			tor_y: out data port torque;
+			tor_z: out data port torque;
+		flows
+			fx: flow path rot_x -> tor_x {latency => 3ms .. 5ms;};
+			fy: flow path rot_y -> tor_y {latency => 3ms .. 5ms;};
+			fz: flow path rot_z -> tor_z {latency => 3ms .. 5ms;};
+	end Controller;
 	
 	thread ControlThread
 		features

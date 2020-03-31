@@ -9,12 +9,13 @@ public
 	device implementation GPSReceiver.impl
 	end GPSReceiver.impl;
 	
-	device implementation Torquer.impl
-	end Torquer.impl;
 	
 	device implementation ReactionWheel.impl
 	end ReactionWheel.impl;
 	
+	device implementation Thruster.impl
+	end Thruster.impl;
+
 	device implementation Computer.impl
 	end Computer.impl;
 	
@@ -25,25 +26,93 @@ public
 	end CommBus2;
 	
 	
+	process implementation Controller.impl
+		subcomponents
+			worker: thread ControlThread.impl;
+		connections
+			Rx: port rot_x -> worker.rot_x;
+			Ry: port rot_y -> worker.rot_y;
+			Rz: port rot_z -> worker.rot_z;
+			Tx: port worker.tor_x -> tor_x;
+			Ty: port worker.tor_y -> tor_y;
+			Tz: port worker.tor_z -> tor_z;
+	end Controller.impl;
+	
+	
+	thread implementation AttitudeControlThread.impl
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => 100ms;
+	end AttitudeControlThread.impl;
+	
+	
+	thread implementation OrbitControlThread.impl
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => 100ms;
+	end OrbitControlThread.impl;
+	
 	system implementation Satellite.impl
 		subcomponents
-			sens: device SunSensor;
-			act: device Torquer;
+			sensAtt: device SunSensor;
+			sensOrb: device GPSReceiver;
+			actAtt: device ReactionWheel;
+			actOrb: device Thruster;
 			cpu: device Computer;
-			contr: process Controller;
+			contrAtt: process AttitudeController;
+			contrOrb: process OrbitController;
 			
 		connections
-			SnCpX: port sens.rot_x -> cpu.rot_x_in;
-			SnCpY: port sens.rot_y -> cpu.rot_y_in;
-			SnCpZ: port sens.rot_z -> cpu.rot_z_in;
+			SnCpAttX1: port sensAtt.rot_x_b1 -> cpu.rot_x_b1_in;
+			SnCpAttY1: port sensAtt.rot_y_b1 -> cpu.rot_y_b1_in;
+			SnCpAttZ1: port sensAtt.rot_z_b1 -> cpu.rot_z_b1_in;
 			
-			CpCnX: port cpu.rot_x_out -> contr.rot_x;
-			CpCnY: port cpu.rot_y_out -> contr.rot_y;
-			CpCnZ: port cpu.rot_z_out -> contr.rot_z;
+			SnCpAttX2: port sensAtt.rot_x_b2 -> cpu.rot_x_b2_in;
+			SnCpAttY2: port sensAtt.rot_y_b2 -> cpu.rot_y_b2_in;
+			SnCpAttZ2: port sensAtt.rot_z_b2 -> cpu.rot_z_b2_in;
 			
-			CnCpX: port contr.tor_x -> cpu.tor_x_in;
-			CnCpY: port contr.tor_y -> cpu.tor_y_in;
-			CnCpZ: port contr.tor_z -> cpu.tor_z_in;
+			SnCpOrbX1: port sensOrb.pos_x_b1 -> cpu.pos_x_b1_in;
+			SnCpOrbY1: port sensOrb.pos_y_b1 -> cpu.pos_y_b1_in;
+			SnCpOrbZ1: port sensOrb.pos_z_b1 -> cpu.pos_z_b1_in;
+			
+			SnCpOrbX2: port sensOrb.pos_x_b2 -> cpu.pos_x_b2_in;
+			SnCpOrbY2: port sensOrb.pos_y_b2 -> cpu.pos_y_b2_in;
+			SnCpOrbZ2: port sensOrb.pos_z_b2 -> cpu.pos_z_b2_in;
+		
+			
+			CpCnAttX1: port cpu.rot_x_b1_out -> contrAtt.rot_x_b1;
+			CpCnAttY1: port cpu.rot_y_b1_out -> contrAtt.rot_y_b1;
+			CpCnAttZ1: port cpu.rot_z_b1_out -> contrAtt.rot_z_b1;
+			
+			CpCnAttX2: port cpu.rot_x_b2_out -> contrAtt.rot_x_b2;
+			CpCnAttY2: port cpu.rot_y_b2_out -> contrAtt.rot_y_b2;
+			CpCnAttZ2: port cpu.rot_z_b2_out -> contrAtt.rot_z_b2;
+			
+			CpCnOrbX1: port cpu.pos_x_b1_out -> contrOrb.pos_x_b1;
+			CpCnOrbY1: port cpu.pos_y_b1_out -> contrOrb.pos_y_b1;
+			CpCnOrbZ1: port cpu.pos_z_b1_out -> contrOrb.pos_z_b1;
+			
+			CpCnOrbX2: port cpu.pos_x_b2_out -> contrOrb.pos_x_b2;
+			CpCnOrbY2: port cpu.pos_y_b2_out -> contrOrb.pos_y_b2;
+			CpCnOrbZ2: port cpu.pos_z_b2_out -> contrOrb.pos_z_b2;
+			
+			
+			CnCpAttX1: port contrAtt.ang_x_b1 -> cpu.ang_x_b1_in;
+			CnCpAttY1: port contrAtt.ang_y_b1 -> cpu.ang_y_b1_in;
+			CnCpAttZ1: port contrAtt.ang_z_b1 -> cpu.ang_z_b1_in;
+			
+			CnCpAttX2: port contrAtt.ang_x_b2 -> cpu.ang_x_b2_in;
+			CnCpAttY2: port contrAtt.ang_y_b2 -> cpu.ang_y_b2_in;
+			CnCpAttZ2: port contrAtt.ang_z_b2 -> cpu.ang_z_b2_in;
+			
+			CnCpOrbA1: port contrOrb.thu_a_b1 -> cpu.thu_a_b1_in;
+			CnCpOrbB1: port contrOrb.thu_b_b1 -> cpu.thu_b_b1_in;
+			CnCpOrbC1: port contrOrb.thu_c_b1 -> cpu.thu_c_b1_in;
+			
+			CnCpOrbA2: port contrOrb.thu_a_b2 -> cpu.thu_a_b2_in;
+			CnCpOrbB2: port contrOrb.thu_b_b2 -> cpu.thu_b_b2_in;
+			CnCpOrbC2: port contrOrb.thu_c_b2 -> cpu.thu_c_b2_in;
+			
 			
 			CpAcX: port cpu.tor_x_out -> act.tor_x;
 			CpAcY: port cpu.tor_y_out -> act.tor_y;

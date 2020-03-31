@@ -9,5 +9,15 @@ public
 		properties
 			Data_Model::Data_Representation => float;
 	end torque;
+	
+	data position
+		properties
+			Data_Model::Data_Representation => float;
+	end position;
 
+	data thrust
+		properties
+			Data_Model::Data_Representation => float;
+	end thrust;
+	
 end datatypes;
