@@ -3,7 +3,7 @@ public
 
 	device Watchdog
 		features
-			test: in event port;
+			test: in data port;
 			reset: out event port;
 		flows
 			fl_in: flow source test {latency => 1ms .. 2ms;};
@@ -89,6 +89,7 @@ public
 	
 	device Computer
 		features
+			to_watchdog: out data port;
 			
 			rot_x_b1_in: in data port;
 			rot_y_b1_in: in data port;
@@ -148,7 +149,6 @@ public
 			
 			comm1: requires bus access CommBus1;
 			comm2: requires bus access CommBus2;
-		
 	end Computer;
 	
 end hardware;
