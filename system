@@ -79,6 +79,76 @@ public
 			Period => 100ms;
 	end OrbitControlThread.impl;
 	
+	process implementation Telemetry.impl
+		subcomponents
+			worker: thread TelemetryThread.impl;
+		connections
+			Rx1: port pos_x_b1 -> worker.pos_x_b1;
+			Ry1: port pos_y_b1 -> worker.pos_y_b1;
+			Rz1: port pos_z_b1 -> worker.pos_z_b1;
+			
+			Rx2: port pos_x_b2 -> worker.pos_x_b2;
+			Ry2: port pos_y_b2 -> worker.pos_y_b2;
+			Rz2: port pos_z_b2 -> worker.pos_z_b2;
+			
+			Rx3: port rot_x_b1 -> worker.rot_x_b1;
+			Ry3: port rot_y_b1 -> worker.rot_y_b1;
+			Rz3: port rot_z_b1 -> worker.rot_z_b1;
+			
+			Rx4: port rot_x_b2 -> worker.rot_x_b2;
+			Ry4: port rot_y_b2 -> worker.rot_y_b2;
+			Rz4: port rot_z_b2 -> worker.rot_z_b2;
+			
+			Tx1: port worker.thu_a_b1 -> thu_a_b1;
+			Ty1: port worker.thu_b_b1 -> thu_b_b1;
+			Tz1: port worker.thu_c_b1 -> thu_c_b1;
+			
+			Tx2: port worker.thu_a_b2 -> thu_a_b2;
+			Ty2: port worker.thu_b_b2 -> thu_b_b2;
+			Tz2: port worker.thu_c_b2 -> thu_c_b2;
+			
+			Tx3: port worker.ang_x_b1 -> ang_x_b1;
+			Ty3: port worker.ang_y_b1 -> ang_y_b1;
+			Tz3: port worker.ang_z_b1 -> ang_z_b1;
+			
+			Tx4: port worker.ang_x_b2 -> ang_x_b2;
+			Ty4: port worker.ang_y_b2 -> ang_y_b2;
+			Tz4: port worker.ang_z_b2 -> ang_z_b2;
+	end Telemetry.impl;
+	
+	thread implementation TelemetryThread.impl
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => 10ms;
+	end TelemetryThread.impl;
+	
+	process implementation Telecommand.impl
+		subcomponents
+			worker: thread TelecommandThread.impl;
+		connections
+			Rx1: port pos_x_ref_in -> worker.pos_x_ref_in;
+			Ry1: port pos_y_ref_in -> worker.pos_y_ref_in;
+			Rz1: port pos_z_ref_in -> worker.pos_z_ref_in;
+			
+			Rx2: port rot_x_ref_in -> worker.rot_x_ref_in;
+			Ry2: port rot_y_ref_in -> worker.rot_y_ref_in;
+			Rz2: port rot_z_ref_in -> worker.rot_z_ref_in;
+			
+			Tx1: port worker.pos_x_ref_out -> pos_x_ref_out;
+			Ty1: port worker.pos_y_ref_out -> pos_y_ref_out;
+			Tz1: port worker.pos_z_ref_out -> pos_z_ref_out;
+			
+			Tx2: port worker.rot_x_ref_out -> rot_x_ref_out;
+			Ty2: port worker.rot_y_ref_out -> rot_y_ref_out;
+			Tz2: port worker.rot_z_ref_out -> rot_z_ref_out;
+	end Telecommand.impl;
+	
+	thread implementation TelecommandThread.impl
+		properties
+			Dispatch_Protocol => Periodic;
+			Period => 10ms;
+	end TelecommandThread.impl;
+	
 	system implementation Satellite.impl
 		subcomponents
 			sensAtt: device SunSensor;
@@ -88,6 +158,8 @@ public
 			cpu: device Computer;
 			contrAtt: process AttitudeController;
 			contrOrb: process OrbitController;
+			telemt: process Telemetry;
+			telecmd: process Telecommand;
 			
 		connections
 			SnCpAttX1: port sensAtt.rot_x_b1 -> cpu.rot_x_b1_in;

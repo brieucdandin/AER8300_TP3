@@ -87,13 +87,170 @@ public
 			thu_c_b2: out data port thrust;
 			
 		flows
-			fx1: flow path pos_x_b1 -> thu_a_b1 {latency => 3ms .. 5ms;};
-			fy1: flow path pos_y_b1 -> thu_b_b1 {latency => 3ms .. 5ms;};
-			fz1: flow path pos_z_b1 -> thu_c_b1 {latency => 3ms .. 5ms;};
+			fa1: flow path pos_x_b1 -> thu_a_b1 {latency => 3ms .. 5ms;};
+			fb1: flow path pos_y_b1 -> thu_b_b1 {latency => 3ms .. 5ms;};
+			fc1: flow path pos_z_b1 -> thu_c_b1 {latency => 3ms .. 5ms;};
 			
-			fx2: flow path pos_x_b2 -> thu_a_b2 {latency => 3ms .. 5ms;};
-			fy2: flow path pos_y_b2 -> thu_b_b2 {latency => 3ms .. 5ms;};
-			fz2: flow path pos_z_b2 -> thu_c_b2 {latency => 3ms .. 5ms;};
+			fa2: flow path pos_x_b2 -> thu_a_b2 {latency => 3ms .. 5ms;};
+			fb2: flow path pos_y_b2 -> thu_b_b2 {latency => 3ms .. 5ms;};
+			fc2: flow path pos_z_b2 -> thu_c_b2 {latency => 3ms .. 5ms;};
 	end OrbitController;
+
+thread TelemetryThread
+		features
+			rot_x_b1_in: in data port radians;
+			rot_y_b1_in: in data port radians;
+			rot_z_b1_in: in data port radians;
+			rot_x_b2_in: in data port radians;
+			rot_y_b2_in: in data port radians;
+			rot_z_b2_in: in data port radians;
+			
+			rot_x_b1_out: out data port radians;
+			rot_y_b1_out: out data port radians;
+			rot_z_b1_out: out data port radians;
+			rot_x_b2_out: out data port radians;
+			rot_y_b2_out: out data port radians;
+			rot_z_b2_out: out data port radians;
+			
+			ang_x_b1_in: in data port radians;
+			ang_y_b1_in: in data port radians;
+			ang_z_b1_in: in data port radians;
+			ang_x_b2_in: in data port radians;
+			ang_y_b2_in: in data port radians;
+			ang_z_b2_in: in data port radians;
+			
+			ang_x_b1_out: out data port radians;
+			ang_y_b1_out: out data port radians;
+			ang_z_b1_out: out data port radians;
+			ang_x_b2_out: out data port radians;
+			ang_y_b2_out: out data port radians;
+			ang_z_b2_out: out data port radians;
+			
+			pos_x_b1_in: in data port;
+			pos_y_b1_in: in data port;
+			pos_z_b1_in: in data port;
+			pos_x_b2_in: in data port;
+			pos_y_b2_in: in data port;
+			pos_z_b2_in: in data port;
+			
+			pos_x_b1_out: out data port;
+			pos_y_b1_out: out data port;
+			pos_z_b1_out: out data port;
+			pos_x_b2_out: out data port;
+			pos_y_b2_out: out data port;
+			pos_z_b2_out: out data port;
+			
+			thu_a_b1_in: in data port thrust;
+			thu_b_b1_in: in data port thrust;
+			thu_c_b1_in: in data port thrust;
+			thu_a_b2_in: in data port thrust;
+			thu_b_b2_in: in data port thrust;
+			thu_c_b2_in: in data port thrust;
+			
+			thu_a_b1_out: out data port thrust;
+			thu_b_b1_out: out data port thrust;
+			thu_c_b1_out: out data port thrust;
+			thu_a_b2_out: out data port thrust;
+			thu_b_b2_out: out data port thrust;
+			thu_c_b2_out: out data port thrust;
+	end TelemetryThread;
+	
+	process Telemetry
+		features
+			rot_x_b1_in: in data port radians;
+			rot_y_b1_in: in data port radians;
+			rot_z_b1_in: in data port radians;
+			rot_x_b2_in: in data port radians;
+			rot_y_b2_in: in data port radians;
+			rot_z_b2_in: in data port radians;
+			
+			rot_x_b1_out: out data port radians;
+			rot_y_b1_out: out data port radians;
+			rot_z_b1_out: out data port radians;
+			rot_x_b2_out: out data port radians;
+			rot_y_b2_out: out data port radians;
+			rot_z_b2_out: out data port radians;
+			
+			ang_x_b1_in: in data port radians;
+			ang_y_b1_in: in data port radians;
+			ang_z_b1_in: in data port radians;
+			ang_x_b2_in: in data port radians;
+			ang_y_b2_in: in data port radians;
+			ang_z_b2_in: in data port radians;
+			
+			ang_x_b1_out: out data port radians;
+			ang_y_b1_out: out data port radians;
+			ang_z_b1_out: out data port radians;
+			ang_x_b2_out: out data port radians;
+			ang_y_b2_out: out data port radians;
+			ang_z_b2_out: out data port radians;
+			
+			pos_x_b1_in: in data port;
+			pos_y_b1_in: in data port;
+			pos_z_b1_in: in data port;
+			pos_x_b2_in: in data port;
+			pos_y_b2_in: in data port;
+			pos_z_b2_in: in data port;
+			
+			pos_x_b1_out: out data port;
+			pos_y_b1_out: out data port;
+			pos_z_b1_out: out data port;
+			pos_x_b2_out: out data port;
+			pos_y_b2_out: out data port;
+			pos_z_b2_out: out data port;
+			
+			thu_a_b1_in: in data port thrust;
+			thu_b_b1_in: in data port thrust;
+			thu_c_b1_in: in data port thrust;
+			thu_a_b2_in: in data port thrust;
+			thu_b_b2_in: in data port thrust;
+			thu_c_b2_in: in data port thrust;
+			
+			thu_a_b1_out: out data port thrust;
+			thu_b_b1_out: out data port thrust;
+			thu_c_b1_out: out data port thrust;
+			thu_a_b2_out: out data port thrust;
+			thu_b_b2_out: out data port thrust;
+			thu_c_b2_out: out data port thrust;
+	end Telemetry;
+
+thread TelecommandThread
+		features
+			rot_x_ref_in: in data port radians;
+			rot_y_ref_in: in data port radians;
+			rot_z_ref_in: in data port radians;
+			
+			rot_x_ref_out: out data port radians;
+			rot_y_ref_out: out data port radians;
+			rot_z_ref_out: out data port radians;
+			
+			pos_x_ref_in: in data port;
+			pos_y_ref_in: in data port;
+			pos_z_ref_in: in data port;
+			
+			pos_x_ref_out: out data port;
+			pos_y_ref_out: out data port;
+			pos_z_ref_out: out data port;
+			
+	end TelecommandThread;
+	
+	process Telecommand
+		features
+			rot_x_ref_in: in data port radians;
+			rot_y_ref_in: in data port radians;
+			rot_z_ref_in: in data port radians;
+			
+			rot_x_ref_out: out data port radians;
+			rot_y_ref_out: out data port radians;
+			rot_z_ref_out: out data port radians;
+			
+			pos_x_ref_in: in data port;
+			pos_y_ref_in: in data port;
+			pos_z_ref_in: in data port;
+			
+			pos_x_ref_out: out data port;
+			pos_y_ref_out: out data port;
+			pos_z_ref_out: out data port;
+	end Telecommand;
 
 end software;

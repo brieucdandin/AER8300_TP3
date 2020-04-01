@@ -54,22 +54,18 @@ public
 			thu_a_b1: in data port thrust;
 			thu_b_b1: in data port thrust;
 			thu_c_b1: in data port thrust;
-			thu_d_b1: in data port thrust;
 			comm1: requires bus access CommBus1;
 			thu_a_b2: in data port thrust;
 			thu_b_b2: in data port thrust;
 			thu_c_b2: in data port thrust;
-			thu_d_b2: in data port thrust;
 			comm2: requires bus access CommBus2;
 		flows
 			fa1: flow sink thu_a_b1 {latency => 1ms .. 2ms;};
 			fb1: flow sink thu_b_b1 {latency => 1ms .. 2ms;};
 			fc1: flow sink thu_c_b1 {latency => 1ms .. 2ms;};
-			fd1: flow sink thu_d_b1 {latency => 1ms .. 2ms;};
 			fa2: flow sink thu_a_b2 {latency => 1ms .. 2ms;};
 			fb2: flow sink thu_b_b2 {latency => 1ms .. 2ms;};
 			fc2: flow sink thu_c_b2 {latency => 1ms .. 2ms;};
-			fd2: flow sink thu_d_b2 {latency => 1ms .. 2ms;};
 	end Thruster;
 	
 	device ReactionWheel
@@ -125,20 +121,16 @@ public
 			thu_a_b1_in: in data port thrust;
 			thu_b_b1_in: in data port thrust;
 			thu_c_b1_in: in data port thrust;
-			thu_d_b1_in: in data port thrust;
 			thu_a_b2_in: in data port thrust;
 			thu_b_b2_in: in data port thrust;
 			thu_c_b2_in: in data port thrust;
-			thu_d_b2_in: in data port thrust;
 			
 			thu_a_b1_out: out data port thrust;
 			thu_b_b1_out: out data port thrust;
 			thu_c_b1_out: out data port thrust;
-			thu_d_b1_out: out data port thrust;
 			thu_a_b2_out: out data port thrust;
 			thu_b_b2_out: out data port thrust;
 			thu_c_b2_out: out data port thrust;
-			thu_d_b2_out: out data port thrust;
 			
 			ang_x_b1_in: in data port radians;
 			ang_y_b1_in: in data port radians;
