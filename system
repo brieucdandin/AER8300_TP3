@@ -6,12 +6,11 @@ public
 			Period => 100ms;
 	end SunSensor.impl;
 	
-	device implementation GPSReceiver.impl
-	end GPSReceiver.impl;
-	
-	
 	device implementation ReactionWheel.impl
 	end ReactionWheel.impl;
+	
+	device implementation GPSReceiver.impl
+	end GPSReceiver.impl;
 	
 	device implementation Thruster.impl
 	end Thruster.impl;
@@ -26,18 +25,26 @@ public
 	end CommBus2;
 	
 	
-	process implementation Controller.impl
+	process implementation AttitudeController.impl
 		subcomponents
-			worker: thread ControlThread.impl;
+			worker: thread AttitudeControlThread.impl;
 		connections
-			Rx: port rot_x -> worker.rot_x;
-			Ry: port rot_y -> worker.rot_y;
-			Rz: port rot_z -> worker.rot_z;
-			Tx: port worker.tor_x -> tor_x;
-			Ty: port worker.tor_y -> tor_y;
-			Tz: port worker.tor_z -> tor_z;
-	end Controller.impl;
-	
+			Rx1: port rot_x_b1 -> worker.rot_x_b1;
+			Ry1: port rot_y_b1 -> worker.rot_y_b1;
+			Rz1: port rot_z_b1 -> worker.rot_z_b1;
+			
+			Rx2: port rot_x_b2 -> worker.rot_x_b2;
+			Ry2: port rot_y_b2 -> worker.rot_y_b2;
+			Rz2: port rot_z_b2 -> worker.rot_z_b2;
+			
+			Tx1: port worker.ang_x_b1 -> ang_x_b1;
+			Ty1: port worker.ang_y_b1 -> ang_y_b1;
+			Tz1: port worker.ang_z_b1 -> ang_z_b1;
+			
+			Tx2: port worker.ang_x_b2 -> ang_x_b2;
+			Ty2: port worker.ang_y_b2 -> ang_y_b2;
+			Tz2: port worker.ang_z_b2 -> ang_z_b2;
+	end AttitudeController.impl;
 	
 	thread implementation AttitudeControlThread.impl
 		properties
@@ -45,6 +52,26 @@ public
 			Period => 100ms;
 	end AttitudeControlThread.impl;
 	
+	process implementation OrbitController.impl
+		subcomponents
+			worker: thread OrbitControlThread.impl;
+		connections
+			Rx1: port pos_x_b1 -> worker.pos_x_b1;
+			Ry1: port pos_y_b1 -> worker.pos_y_b1;
+			Rz1: port pos_z_b1 -> worker.pos_z_b1;
+			
+			Rx2: port pos_x_b2 -> worker.pos_x_b2;
+			Ry2: port pos_y_b2 -> worker.pos_y_b2;
+			Rz2: port pos_z_b2 -> worker.pos_z_b2;
+			
+			Tx1: port worker.thu_a_b1 -> thu_a_b1;
+			Ty1: port worker.thu_b_b1 -> thu_b_b1;
+			Tz1: port worker.thu_c_b1 -> thu_c_b1;
+			
+			Tx2: port worker.thu_a_b2 -> thu_a_b2;
+			Ty2: port worker.thu_b_b2 -> thu_b_b2;
+			Tz2: port worker.thu_c_b2 -> thu_c_b2;
+	end OrbitController.impl;
 	
 	thread implementation OrbitControlThread.impl
 		properties
@@ -114,13 +141,38 @@ public
 			CnCpOrbC2: port contrOrb.thu_c_b2 -> cpu.thu_c_b2_in;
 			
 			
-			CpAcX: port cpu.tor_x_out -> act.tor_x;
-			CpAcY: port cpu.tor_y_out -> act.tor_y;
-			CpAcZ: port cpu.tor_z_out -> act.tor_z;
+			CpAcAttX1: port cpu.ang_x_b1_out -> act.ang_x_b1;
+			CpAcAttY1: port cpu.ang_y_b1_out -> act.ang_y_b1;
+			CpAcAttZ1: port cpu.ang_z_b1_out -> act.ang_z_b1;
 			
-			CommSn: bus access comm <-> sens.comm;
-			CommAc: bus access comm <-> act.comm;
-			CommCp: bus access comm <-> cpu.comm;
+			CpAcAttX2: port cpu.ang_x_b2_out -> act.ang_x_b2;
+			CpAcAttY2: port cpu.ang_y_b2_out -> act.ang_y_b2;
+			CpAcAttZ2: port cpu.ang_z_b2_out -> act.ang_z_b2;
+			
+			CpAcOrbX1: port cpu.thu_a_b1_out -> act.thu_a_b1;
+			CpAcOrbY1: port cpu.thu_b_b1_out -> act.thu_b_b1;
+			CpAcOrbZ1: port cpu.thu_c_b1_out -> act.thu_c_b1;
+			
+			CpAcOrbX2: port cpu.thu_a_b2_out -> act.thu_a_b2;
+			CpAcOrbY2: port cpu.thu_b_b2_out -> act.thu_b_b2;
+			CpAcOrbZ2: port cpu.thu_c_b2_out -> act.thu_c_b2;
+			
+			
+			CommSnAtt1: bus access comm1 <-> sensAtt.comm1;
+			CommSnAtt2: bus access comm2 <-> sensAtt.comm2;
+			
+			CommSnOrb1: bus access comm1 <-> sensOrb.comm1;
+			CommSnOrb2: bus access comm2 <-> sensOrb.comm2;
+			
+			CommAcAtt1: bus access comm1 <-> actAtt.comm1;
+			CommAcAtt2: bus access comm2 <-> actAtt.comm2;
+			
+			CommAcOrb1: bus access comm1 <-> actOrb.comm1;
+			CommAcOrb2: bus access comm2 <-> actOrb.comm2;
+			
+			CommCp1: bus access comm1 <-> cpu.comm1;
+			CommCp2: bus access comm2 <-> cpu.comm2;
+			
 	end Satellite.impl;
 
 end system;

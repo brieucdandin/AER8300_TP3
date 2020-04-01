@@ -15,11 +15,11 @@ public
 			rot_x_b1: out data port;
 			rot_y_b1: out data port;
 			rot_z_b1: out data port;
-		    comm: requires bus access CommBus1;
+		    comm1: requires bus access CommBus1;
 			rot_x_b2: out data port;
 			rot_y_b2: out data port;
 			rot_z_b2: out data port;
-		    comm: requires bus access CommBus2;
+		    comm2: requires bus access CommBus2;
 	 	flows
 			fx1: flow source rot_x_b1 {latency => 1ms .. 2ms;};
 			fy1: flow source rot_y_b1 {latency => 1ms .. 2ms;};
@@ -34,11 +34,11 @@ public
 			pos_x_b1: out data port;
 			pos_y_b1: out data port;
 			pos_z_b1: out data port;
-			comm: requires bus access CommBus1;
+			comm1: requires bus access CommBus1;
 			pos_x_b2: out data port;
 			pos_y_b2: out data port;
 			pos_z_b2: out data port;
-		    comm: requires bus access CommBus2;
+		    comm2: requires bus access CommBus2;
 		flows
 			fx1: flow source pos_x_b1 {latency => 3ms .. 5ms;};
 			fy1: flow source pos_y_b1 {latency => 3ms .. 5ms;};
@@ -55,12 +55,12 @@ public
 			thu_b_b1: in data port thrust;
 			thu_c_b1: in data port thrust;
 			thu_d_b1: in data port thrust;
-			comm: requires bus access CommBus1;
+			comm1: requires bus access CommBus1;
 			thu_a_b2: in data port thrust;
 			thu_b_b2: in data port thrust;
 			thu_c_b2: in data port thrust;
 			thu_d_b2: in data port thrust;
-			comm: requires bus access CommBus2;
+			comm2: requires bus access CommBus2;
 		flows
 			fa1: flow sink thu_a_b1 {latency => 1ms .. 2ms;};
 			fb1: flow sink thu_b_b1 {latency => 1ms .. 2ms;};
@@ -77,11 +77,11 @@ public
 			ang_x_b1: in data port radians;
 			ang_y_b1: in data port radians;
 			ang_z_b1: in data port radians;
-			comm: requires bus access CommBus1;
+			comm1: requires bus access CommBus1;
 			ang_x_b2: in data port radians;
 			ang_y_b2: in data port radians;
 			ang_z_b2: in data port radians;
-			comm: requires bus access CommBus2;
+			comm2: requires bus access CommBus2;
 		flows
 			fx1: flow sink ang_x_b1 {latency => 1ms .. 2ms;};
 			fy1: flow sink ang_y_b1 {latency => 1ms .. 2ms;};
@@ -154,8 +154,8 @@ public
 			ang_y_b2_out: out data port radians;
 			ang_z_b2_out: out data port radians;
 			
-			comm: requires bus access CommBus1;
-			comm: requires bus access CommBus2;
+			comm1: requires bus access CommBus1;
+			comm2: requires bus access CommBus2;
 		
 	end Computer;
 	
