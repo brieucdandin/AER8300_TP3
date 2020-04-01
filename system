@@ -23,63 +23,63 @@ public
 		connections
 			-- Prime computer
 			
-			to_watchdog_Prime: data port Prime.to_watchdog -> to_watchdog;
+			to_watchdog_Prime: data port Prime.to_watchdog -> to_watchdog refined to data port in modes ( Primemode );
 			
-			rot_x_b1_in_Prime: data port Prime.rot_x_b1_in -> rot_x_b1_in;
-			rot_y_b1_in_Prime: data port Prime.rot_y_b1_in -> rot_y_b1_in;
-			rot_z_b1_in_Prime: data port Prime.rot_z_b1_in -> rot_z_b1_in;
-			rot_x_b2_in_Prime: data port Prime.rot_x_b2_in -> rot_x_b2_in;
-			rot_y_b2_in_Prime: data port Prime.rot_y_b2_in -> rot_y_b2_in;
-			rot_z_b2_in_Prime: data port Prime.rot_z_b2_in -> rot_z_b2_in;
+			rot_x_b1_in_Prime: data port Prime.rot_x_b1_in -> rot_x_b1_in refined to data port in modes ( Primemode );
+			rot_y_b1_in_Prime: data port Prime.rot_y_b1_in -> rot_y_b1_in refined to data port in modes ( Primemode );
+			rot_z_b1_in_Prime: data port Prime.rot_z_b1_in -> rot_z_b1_in refined to data port in modes ( Primemode );
+			rot_x_b2_in_Prime: data port Prime.rot_x_b2_in -> rot_x_b2_in refined to data port in modes ( Primemode );
+			rot_y_b2_in_Prime: data port Prime.rot_y_b2_in -> rot_y_b2_in refined to data port in modes ( Primemode );
+			rot_z_b2_in_Prime: data port Prime.rot_z_b2_in -> rot_z_b2_in refined to data port in modes ( Primemode );
 			
-			rot_x_b1_out_Prime: data port rot_x_b1_out -> Prime.rot_x_b1_out;
-			rot_y_b1_out_Prime: data port rot_y_b1_out -> Prime.rot_y_b1_out;
-			rot_z_b1_out_Prime: data port rot_z_b1_out -> Prime.rot_z_b1_out;
-			rot_x_b2_out_Prime: data port rot_x_b2_out -> Prime.rot_x_b2_out;
-			rot_y_b2_out_Prime: data port rot_y_b2_out -> Prime.rot_y_b2_out;
-			rot_z_b2_out_Prime: data port rot_z_b2_out -> Prime.rot_z_b2_out;
+			rot_x_b1_out_Prime: data port rot_x_b1_out -> Prime.rot_x_b1_out refined to data port in modes ( Primemode );
+			rot_y_b1_out_Prime: data port rot_y_b1_out -> Prime.rot_y_b1_out refined to data port in modes ( Primemode );
+			rot_z_b1_out_Prime: data port rot_z_b1_out -> Prime.rot_z_b1_out refined to data port in modes ( Primemode );
+			rot_x_b2_out_Prime: data port rot_x_b2_out -> Prime.rot_x_b2_out refined to data port in modes ( Primemode );
+			rot_y_b2_out_Prime: data port rot_y_b2_out -> Prime.rot_y_b2_out refined to data port in modes ( Primemode );
+			rot_z_b2_out_Prime: data port rot_z_b2_out -> Prime.rot_z_b2_out refined to data port in modes ( Primemode );
 			
-			pos_x_b1_in_Prime: data port Prime.pos_x_b1_in -> pos_x_b1_in;
-			pos_y_b1_in_Prime: data port Prime.pos_y_b1_in -> pos_y_b1_in;
-			pos_z_b1_in_Prime: data port Prime.pos_z_b1_in -> pos_z_b1_in;
-			pos_x_b2_in_Prime: data port Prime.pos_x_b2_in -> pos_x_b2_in;
-			pos_y_b2_in_Prime: data port Prime.pos_y_b2_in -> pos_y_b2_in;
-			pos_z_b2_in_Prime: data port Prime.pos_z_b2_in -> pos_z_b2_in;
+			pos_x_b1_in_Prime: data port Prime.pos_x_b1_in -> pos_x_b1_in refined to data port in modes ( Primemode );
+			pos_y_b1_in_Prime: data port Prime.pos_y_b1_in -> pos_y_b1_in refined to data port in modes ( Primemode );
+			pos_z_b1_in_Prime: data port Prime.pos_z_b1_in -> pos_z_b1_in refined to data port in modes ( Primemode );
+			pos_x_b2_in_Prime: data port Prime.pos_x_b2_in -> pos_x_b2_in refined to data port in modes ( Primemode );
+			pos_y_b2_in_Prime: data port Prime.pos_y_b2_in -> pos_y_b2_in refined to data port in modes ( Primemode );
+			pos_z_b2_in_Prime: data port Prime.pos_z_b2_in -> pos_z_b2_in refined to data port in modes ( Primemode );
 			
-			pos_x_b1_out_Prime: data port pos_x_b1_out -> Prime.pos_x_b1_out;
-			pos_y_b1_out_Prime: data port pos_y_b1_out -> Prime.pos_y_b1_out;
-			pos_z_b1_out_Prime: data port pos_z_b1_out -> Prime.pos_z_b1_out;
-			pos_x_b2_out_Prime: data port pos_x_b2_out -> Prime.pos_x_b2_out;
-			pos_y_b2_out_Prime: data port pos_y_b2_out -> Prime.pos_y_b2_out;
-			pos_z_b2_out_Prime: data port pos_z_b2_out -> Prime.pos_z_b2_out;
+			pos_x_b1_out_Prime: data port pos_x_b1_out -> Prime.pos_x_b1_out refined to data port in modes ( Primemode );
+			pos_y_b1_out_Prime: data port pos_y_b1_out -> Prime.pos_y_b1_out refined to data port in modes ( Primemode );
+			pos_z_b1_out_Prime: data port pos_z_b1_out -> Prime.pos_z_b1_out refined to data port in modes ( Primemode );
+			pos_x_b2_out_Prime: data port pos_x_b2_out -> Prime.pos_x_b2_out refined to data port in modes ( Primemode );
+			pos_y_b2_out_Prime: data port pos_y_b2_out -> Prime.pos_y_b2_out refined to data port in modes ( Primemode );
+			pos_z_b2_out_Prime: data port pos_z_b2_out -> Prime.pos_z_b2_out refined to data port in modes ( Primemode );
 			
-			thu_a_b1_in_Prime: data port Prime.thu_a_b1_in -> thu_a_b1_in;
-			thu_b_b1_in_Prime: data port Prime.thu_b_b1_in -> thu_b_b1_in;
-			thu_c_b1_in_Prime: data port Prime.thu_c_b1_in -> thu_c_b1_in;
-			thu_a_b2_in_Prime: data port Prime.thu_a_b2_in -> thu_a_b2_in;
-			thu_b_b2_in_Prime: data port Prime.thu_b_b2_in -> thu_b_b2_in;
-			thu_c_b2_in_Prime: data port Prime.thu_c_b2_in -> thu_c_b2_in;
+			thu_a_b1_in_Prime: data port Prime.thu_a_b1_in -> thu_a_b1_in refined to data port in modes ( Primemode );
+			thu_b_b1_in_Prime: data port Prime.thu_b_b1_in -> thu_b_b1_in refined to data port in modes ( Primemode );
+			thu_c_b1_in_Prime: data port Prime.thu_c_b1_in -> thu_c_b1_in refined to data port in modes ( Primemode );
+			thu_a_b2_in_Prime: data port Prime.thu_a_b2_in -> thu_a_b2_in refined to data port in modes ( Primemode );
+			thu_b_b2_in_Prime: data port Prime.thu_b_b2_in -> thu_b_b2_in refined to data port in modes ( Primemode );
+			thu_c_b2_in_Prime: data port Prime.thu_c_b2_in -> thu_c_b2_in refined to data port in modes ( Primemode );
+		
+			thu_a_b1_out_Prime: data port thu_a_b1_out -> Prime.thu_a_b1_out refined to data port in modes ( Primemode );
+			thu_b_b1_out_Prime: data port thu_b_b1_out -> Prime.thu_b_b1_out refined to data port in modes ( Primemode );
+			thu_c_b1_out_Prime: data port thu_c_b1_out -> Prime.thu_c_b1_out refined to data port in modes ( Primemode );
+			thu_a_b2_out_Prime: data port thu_a_b2_out -> Prime.thu_a_b2_out refined to data port in modes ( Primemode );
+			thu_b_b2_out_Prime: data port thu_b_b2_out -> Prime.thu_b_b2_out refined to data port in modes ( Primemode );
+			thu_c_b2_out_Prime: data port thu_c_b2_out -> Prime.thu_c_b2_out refined to data port in modes ( Primemode );
 			
-			thu_a_b1_out_Prime: data port thu_a_b1_out -> Prime.thu_a_b1_out;
-			thu_b_b1_out_Prime: data port thu_b_b1_out -> Prime.thu_b_b1_out;
-			thu_c_b1_out_Prime: data port thu_c_b1_out -> Prime.thu_c_b1_out;
-			thu_a_b2_out_Prime: data port thu_a_b2_out -> Prime.thu_a_b2_out;
-			thu_b_b2_out_Prime: data port thu_b_b2_out -> Prime.thu_b_b2_out;
-			thu_c_b2_out_Prime: data port thu_c_b2_out -> Prime.thu_c_b2_out;
+			pos_x_b1_in_Prime: data port Prime.pos_x_b1_in -> pos_x_b1_in refined to data port in modes ( Primemode );
+			pos_y_b1_in_Prime: data port Prime.pos_y_b1_in -> pos_y_b1_in refined to data port in modes ( Primemode );
+			pos_z_b1_in_Prime: data port Prime.pos_z_b1_in -> pos_z_b1_in refined to data port in modes ( Primemode );
+			pos_x_b2_in_Prime: data port Prime.pos_x_b2_in -> pos_x_b2_in refined to data port in modes ( Primemode );
+			pos_y_b2_in_Prime: data port Prime.pos_y_b2_in -> pos_y_b2_in refined to data port in modes ( Primemode );
+			pos_z_b2_in_Prime: data port Prime.pos_z_b2_in -> pos_z_b2_in refined to data port in modes ( Primemode );
 			
-			pos_x_b1_in_Prime: data port Prime.pos_x_b1_in -> pos_x_b1_in;
-			pos_y_b1_in_Prime: data port Prime.pos_y_b1_in -> pos_y_b1_in;
-			pos_z_b1_in_Prime: data port Prime.pos_z_b1_in -> pos_z_b1_in;
-			pos_x_b2_in_Prime: data port Prime.pos_x_b2_in -> pos_x_b2_in;
-			pos_y_b2_in_Prime: data port Prime.pos_y_b2_in -> pos_y_b2_in;
-			pos_z_b2_in_Prime: data port Prime.pos_z_b2_in -> pos_z_b2_in;
-			
-			pos_x_b1_out_Prime: data port pos_x_b1_out -> Prime.pos_x_b1_out;
-			pos_y_b1_out_Prime: data port pos_y_b1_out -> Prime.pos_y_b1_out;
-			pos_z_b1_out_Prime: data port pos_z_b1_out -> Prime.pos_z_b1_out;
-			pos_x_b2_out_Prime: data port pos_x_b2_out -> Prime.pos_x_b2_out;
-			pos_y_b2_out_Prime: data port pos_y_b2_out -> Prime.pos_y_b2_out;
-			pos_z_b2_out_Prime: data port pos_z_b2_out -> Prime.pos_z_b2_out;
+			pos_x_b1_out_Prime: data port pos_x_b1_out -> Prime.pos_x_b1_out refined to data port in modes ( Primemode );
+			pos_y_b1_out_Prime: data port pos_y_b1_out -> Prime.pos_y_b1_out refined to data port in modes ( Primemode );
+			pos_z_b1_out_Prime: data port pos_z_b1_out -> Prime.pos_z_b1_out refined to data port in modes ( Primemode );
+			pos_x_b2_out_Prime: data port pos_x_b2_out -> Prime.pos_x_b2_out refined to data port in modes ( Primemode );
+			pos_y_b2_out_Prime: data port pos_y_b2_out -> Prime.pos_y_b2_out refined to data port in modes ( Primemode );
+			pos_z_b2_out_Prime: data port pos_z_b2_out -> Prime.pos_z_b2_out refined to data port in modes ( Primemode );
 			
 			--TODO
 			comm1: requires bus access CommBus1;
@@ -87,63 +87,63 @@ public
 			
 			-- Secondary computer
 			
-			to_watchdog_Secondary: data port Secondary.to_watchdog -> to_watchdog;
+			to_watchdog_Secondary: data port Secondary.to_watchdog -> to_watchdog refined to data port in modes ( Secondarymode );
 			
-			rot_x_b1_in_Secondary: data port Secondary.rot_x_b1_in -> rot_x_b1_in;
-			rot_y_b1_in_Secondary: data port Secondary.rot_y_b1_in -> rot_y_b1_in;
-			rot_z_b1_in_Secondary: data port Secondary.rot_z_b1_in -> rot_z_b1_in;
-			rot_x_b2_in_Secondary: data port Secondary.rot_x_b2_in -> rot_x_b2_in;
-			rot_y_b2_in_Secondary: data port Secondary.rot_y_b2_in -> rot_y_b2_in;
-			rot_z_b2_in_Secondary: data port Secondary.rot_z_b2_in -> rot_z_b2_in;
+			rot_x_b1_in_Secondary: data port Secondary.rot_x_b1_in -> rot_x_b1_in refined to data port in modes ( Secondarymode );
+			rot_y_b1_in_Secondary: data port Secondary.rot_y_b1_in -> rot_y_b1_in refined to data port in modes ( Secondarymode );
+			rot_z_b1_in_Secondary: data port Secondary.rot_z_b1_in -> rot_z_b1_in refined to data port in modes ( Secondarymode );
+			rot_x_b2_in_Secondary: data port Secondary.rot_x_b2_in -> rot_x_b2_in refined to data port in modes ( Secondarymode );
+			rot_y_b2_in_Secondary: data port Secondary.rot_y_b2_in -> rot_y_b2_in refined to data port in modes ( Secondarymode );
+			rot_z_b2_in_Secondary: data port Secondary.rot_z_b2_in -> rot_z_b2_in refined to data port in modes ( Secondarymode );
 			
-			rot_x_b1_out_Secondary: data port rot_x_b1_out -> Secondary.rot_x_b1_out;
-			rot_y_b1_out_Secondary: data port rot_y_b1_out -> Secondary.rot_y_b1_out;
-			rot_z_b1_out_Secondary: data port rot_z_b1_out -> Secondary.rot_z_b1_out;
-			rot_x_b2_out_Secondary: data port rot_x_b2_out -> Secondary.rot_x_b2_out;
-			rot_y_b2_out_Secondary: data port rot_y_b2_out -> Secondary.rot_y_b2_out;
-			rot_z_b2_out_Secondary: data port rot_z_b2_out -> Secondary.rot_z_b2_out;
+			rot_x_b1_out_Secondary: data port rot_x_b1_out -> Secondary.rot_x_b1_out refined to data port in modes ( Secondarymode );
+			rot_y_b1_out_Secondary: data port rot_y_b1_out -> Secondary.rot_y_b1_out refined to data port in modes ( Secondarymode );
+			rot_z_b1_out_Secondary: data port rot_z_b1_out -> Secondary.rot_z_b1_out refined to data port in modes ( Secondarymode );
+			rot_x_b2_out_Secondary: data port rot_x_b2_out -> Secondary.rot_x_b2_out refined to data port in modes ( Secondarymode );
+			rot_y_b2_out_Secondary: data port rot_y_b2_out -> Secondary.rot_y_b2_out refined to data port in modes ( Secondarymode );
+			rot_z_b2_out_Secondary: data port rot_z_b2_out -> Secondary.rot_z_b2_out refined to data port in modes ( Secondarymode );
 			
-			pos_x_b1_in_Secondary: data port Secondary.pos_x_b1_in -> pos_x_b1_in;
-			pos_y_b1_in_Secondary: data port Secondary.pos_y_b1_in -> pos_y_b1_in;
-			pos_z_b1_in_Secondary: data port Secondary.pos_z_b1_in -> pos_z_b1_in;
-			pos_x_b2_in_Secondary: data port Secondary.pos_x_b2_in -> pos_x_b2_in;
-			pos_y_b2_in_Secondary: data port Secondary.pos_y_b2_in -> pos_y_b2_in;
-			pos_z_b2_in_Secondary: data port Secondary.pos_z_b2_in -> pos_z_b2_in;
+			pos_x_b1_in_Secondary: data port Secondary.pos_x_b1_in -> pos_x_b1_in refined to data port in modes ( Secondarymode );
+			pos_y_b1_in_Secondary: data port Secondary.pos_y_b1_in -> pos_y_b1_in refined to data port in modes ( Secondarymode );
+			pos_z_b1_in_Secondary: data port Secondary.pos_z_b1_in -> pos_z_b1_in refined to data port in modes ( Secondarymode );
+			pos_x_b2_in_Secondary: data port Secondary.pos_x_b2_in -> pos_x_b2_in refined to data port in modes ( Secondarymode );
+			pos_y_b2_in_Secondary: data port Secondary.pos_y_b2_in -> pos_y_b2_in refined to data port in modes ( Secondarymode );
+			pos_z_b2_in_Secondary: data port Secondary.pos_z_b2_in -> pos_z_b2_in refined to data port in modes ( Secondarymode );
 			
-			pos_x_b1_out_Secondary: data port pos_x_b1_out -> Secondary.pos_x_b1_out;
-			pos_y_b1_out_Secondary: data port pos_y_b1_out -> Secondary.pos_y_b1_out;
-			pos_z_b1_out_Secondary: data port pos_z_b1_out -> Secondary.pos_z_b1_out;
-			pos_x_b2_out_Secondary: data port pos_x_b2_out -> Secondary.pos_x_b2_out;
-			pos_y_b2_out_Secondary: data port pos_y_b2_out -> Secondary.pos_y_b2_out;
-			pos_z_b2_out_Secondary: data port pos_z_b2_out -> Secondary.pos_z_b2_out;
+			pos_x_b1_out_Secondary: data port pos_x_b1_out -> Secondary.pos_x_b1_out refined to data port in modes ( Secondarymode );
+			pos_y_b1_out_Secondary: data port pos_y_b1_out -> Secondary.pos_y_b1_out refined to data port in modes ( Secondarymode );
+			pos_z_b1_out_Secondary: data port pos_z_b1_out -> Secondary.pos_z_b1_out refined to data port in modes ( Secondarymode );
+			pos_x_b2_out_Secondary: data port pos_x_b2_out -> Secondary.pos_x_b2_out refined to data port in modes ( Secondarymode );
+			pos_y_b2_out_Secondary: data port pos_y_b2_out -> Secondary.pos_y_b2_out refined to data port in modes ( Secondarymode );
+			pos_z_b2_out_Secondary: data port pos_z_b2_out -> Secondary.pos_z_b2_out refined to data port in modes ( Secondarymode );
 			
-			thu_a_b1_in_Secondary: data port Secondary.thu_a_b1_in -> thu_a_b1_in;
-			thu_b_b1_in_Secondary: data port Secondary.thu_b_b1_in -> thu_b_b1_in;
-			thu_c_b1_in_Secondary: data port Secondary.thu_c_b1_in -> thu_c_b1_in;
-			thu_a_b2_in_Secondary: data port Secondary.thu_a_b2_in -> thu_a_b2_in;
-			thu_b_b2_in_Secondary: data port Secondary.thu_b_b2_in -> thu_b_b2_in;
-			thu_c_b2_in_Secondary: data port Secondary.thu_c_b2_in -> thu_c_b2_in;
+			thu_a_b1_in_Secondary: data port Secondary.thu_a_b1_in -> thu_a_b1_in refined to data port in modes ( Secondarymode );
+			thu_b_b1_in_Secondary: data port Secondary.thu_b_b1_in -> thu_b_b1_in refined to data port in modes ( Secondarymode );
+			thu_c_b1_in_Secondary: data port Secondary.thu_c_b1_in -> thu_c_b1_in refined to data port in modes ( Secondarymode );
+			thu_a_b2_in_Secondary: data port Secondary.thu_a_b2_in -> thu_a_b2_in refined to data port in modes ( Secondarymode );
+			thu_b_b2_in_Secondary: data port Secondary.thu_b_b2_in -> thu_b_b2_in refined to data port in modes ( Secondarymode );
+			thu_c_b2_in_Secondary: data port Secondary.thu_c_b2_in -> thu_c_b2_in refined to data port in modes ( Secondarymode );
 			
-			thu_a_b1_out_Secondary: data port thu_a_b1_out -> Secondary.thu_a_b1_out;
-			thu_b_b1_out_Secondary: data port thu_b_b1_out -> Secondary.thu_b_b1_out;
-			thu_c_b1_out_Secondary: data port thu_c_b1_out -> Secondary.thu_c_b1_out;
-			thu_a_b2_out_Secondary: data port thu_a_b2_out -> Secondary.thu_a_b2_out;
-			thu_b_b2_out_Secondary: data port thu_b_b2_out -> Secondary.thu_b_b2_out;
-			thu_c_b2_out_Secondary: data port thu_c_b2_out -> Secondary.thu_c_b2_out;
+			thu_a_b1_out_Secondary: data port thu_a_b1_out -> Secondary.thu_a_b1_out refined to data port in modes ( Secondarymode );
+			thu_b_b1_out_Secondary: data port thu_b_b1_out -> Secondary.thu_b_b1_out refined to data port in modes ( Secondarymode );
+			thu_c_b1_out_Secondary: data port thu_c_b1_out -> Secondary.thu_c_b1_out refined to data port in modes ( Secondarymode );
+			thu_a_b2_out_Secondary: data port thu_a_b2_out -> Secondary.thu_a_b2_out refined to data port in modes ( Secondarymode );
+			thu_b_b2_out_Secondary: data port thu_b_b2_out -> Secondary.thu_b_b2_out refined to data port in modes ( Secondarymode );
+			thu_c_b2_out_Secondary: data port thu_c_b2_out -> Secondary.thu_c_b2_out refined to data port in modes ( Secondarymode );
 			
-			pos_x_b1_in_Secondary: data port Secondary.pos_x_b1_in -> pos_x_b1_in;
-			pos_y_b1_in_Secondary: data port Secondary.pos_y_b1_in -> pos_y_b1_in;
-			pos_z_b1_in_Secondary: data port Secondary.pos_z_b1_in -> pos_z_b1_in;
-			pos_x_b2_in_Secondary: data port Secondary.pos_x_b2_in -> pos_x_b2_in;
-			pos_y_b2_in_Secondary: data port Secondary.pos_y_b2_in -> pos_y_b2_in;
-			pos_z_b2_in_Secondary: data port Secondary.pos_z_b2_in -> pos_z_b2_in;
+			pos_x_b1_in_Secondary: data port Secondary.pos_x_b1_in -> pos_x_b1_in refined to data port in modes ( Secondarymode );
+			pos_y_b1_in_Secondary: data port Secondary.pos_y_b1_in -> pos_y_b1_in refined to data port in modes ( Secondarymode );
+			pos_z_b1_in_Secondary: data port Secondary.pos_z_b1_in -> pos_z_b1_in refined to data port in modes ( Secondarymode );
+			pos_x_b2_in_Secondary: data port Secondary.pos_x_b2_in -> pos_x_b2_in refined to data port in modes ( Secondarymode );
+			pos_y_b2_in_Secondary: data port Secondary.pos_y_b2_in -> pos_y_b2_in refined to data port in modes ( Secondarymode );
+			pos_z_b2_in_Secondary: data port Secondary.pos_z_b2_in -> pos_z_b2_in refined to data port in modes ( Secondarymode );
 			
-			pos_x_b1_out_Secondary: data port pos_x_b1_out -> Secondary.pos_x_b1_out;
-			pos_y_b1_out_Secondary: data port pos_y_b1_out -> Secondary.pos_y_b1_out;
-			pos_z_b1_out_Secondary: data port pos_z_b1_out -> Secondary.pos_z_b1_out;
-			pos_x_b2_out_Secondary: data port pos_x_b2_out -> Secondary.pos_x_b2_out;
-			pos_y_b2_out_Secondary: data port pos_y_b2_out -> Secondary.pos_y_b2_out;
-			pos_z_b2_out_Secondary: data port pos_z_b2_out -> Secondary.pos_z_b2_out;
+			pos_x_b1_out_Secondary: data port pos_x_b1_out -> Secondary.pos_x_b1_out refined to data port in modes ( Secondarymode );
+			pos_y_b1_out_Secondary: data port pos_y_b1_out -> Secondary.pos_y_b1_out refined to data port in modes ( Secondarymode );
+			pos_z_b1_out_Secondary: data port pos_z_b1_out -> Secondary.pos_z_b1_out refined to data port in modes ( Secondarymode );
+			pos_x_b2_out_Secondary: data port pos_x_b2_out -> Secondary.pos_x_b2_out refined to data port in modes ( Secondarymode );
+			pos_y_b2_out_Secondary: data port pos_y_b2_out -> Secondary.pos_y_b2_out refined to data port in modes ( Secondarymode );
+			pos_z_b2_out_Secondary: data port pos_z_b2_out -> Secondary.pos_z_b2_out refined to data port in modes ( Secondarymode );
 			
 			-- TODO
 			comm1: requires bus access CommBus1;
