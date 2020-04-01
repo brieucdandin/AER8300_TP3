@@ -3,9 +3,11 @@ public
 
 	device Watchdog
 		features
-			-- Ceci est un commentaire.
-		properties
-			-- Ceci est un autre commentaire.
+			test: in event port;
+			reset: out event port;
+		flows
+			fl_in: flow source test {latency => 1ms .. 2ms;};
+			fl_out: flow sink test {latency => 1ms .. 2ms;};
 	end Watchdog;
 
 	device SunSensor
@@ -91,70 +93,70 @@ public
 	
 	device Computer
 		features
+			
+			rot_x_b1_in: in data port;
+			rot_y_b1_in: in data port;
+			rot_z_b1_in: in data port;
+			rot_x_b2_in: in data port;
+			rot_y_b2_in: in data port;
+			rot_z_b2_in: in data port;
+			
+			rot_x_b1_out: out data port;
+			rot_y_b1_out: out data port;
+			rot_z_b1_out: out data port;
+			rot_x_b2_out: out data port;
+			rot_y_b2_out: out data port;
+			rot_z_b2_out: out data port;
+			
+			pos_x_b1_in: in data port;
+			pos_y_b1_in: in data port;
+			pos_z_b1_in: in data port;
+			pos_x_b2_in: in data port;
+			pos_y_b2_in: in data port;
+			pos_z_b2_in: in data port;
+			
+			pos_x_b1_out: out data port;
+			pos_y_b1_out: out data port;
+			pos_z_b1_out: out data port;
+			pos_x_b2_out: out data port;
+			pos_y_b2_out: out data port;
+			pos_z_b2_out: out data port;
+			
+			thu_a_b1_in: in data port thrust;
+			thu_b_b1_in: in data port thrust;
+			thu_c_b1_in: in data port thrust;
+			thu_d_b1_in: in data port thrust;
+			thu_a_b2_in: in data port thrust;
+			thu_b_b2_in: in data port thrust;
+			thu_c_b2_in: in data port thrust;
+			thu_d_b2_in: in data port thrust;
+			
+			thu_a_b1_out: out data port thrust;
+			thu_b_b1_out: out data port thrust;
+			thu_c_b1_out: out data port thrust;
+			thu_d_b1_out: out data port thrust;
+			thu_a_b2_out: out data port thrust;
+			thu_b_b2_out: out data port thrust;
+			thu_c_b2_out: out data port thrust;
+			thu_d_b2_out: out data port thrust;
+			
+			ang_x_b1_in: in data port radians;
+			ang_y_b1_in: in data port radians;
+			ang_z_b1_in: in data port radians;
+			ang_x_b2_in: in data port radians;
+			ang_y_b2_in: in data port radians;
+			ang_z_b2_in: in data port radians;
+			
+			ang_x_b1_out: out data port radians;
+			ang_y_b1_out: out data port radians;
+			ang_z_b1_out: out data port radians;
+			ang_x_b2_out: out data port radians;
+			ang_y_b2_out: out data port radians;
+			ang_z_b2_out: out data port radians;
+			
+			comm: requires bus access CommBus1;
+			comm: requires bus access CommBus2;
 		
-		rot_x_b1_in: in data port;
-		rot_y_b1_in: in data port;
-		rot_z_b1_in: in data port;
-		rot_x_b2_in: in data port;
-		rot_y_b2_in: in data port;
-		rot_z_b2_in: in data port;
-		
-		rot_x_b1_out: out data port;
-		rot_y_b1_out: out data port;
-		rot_z_b1_out: out data port;
-		rot_x_b2_out: out data port;
-		rot_y_b2_out: out data port;
-		rot_z_b2_out: out data port;
-		
-		pos_x_b1_in: in data port;
-		pos_y_b1_in: in data port;
-		pos_z_b1_in: in data port;
-		pos_x_b2_in: in data port;
-		pos_y_b2_in: in data port;
-		pos_z_b2_in: in data port;
-		
-		pos_x_b1_out: out data port;
-		pos_y_b1_out: out data port;
-		pos_z_b1_out: out data port;
-		pos_x_b2_out: out data port;
-		pos_y_b2_out: out data port;
-		pos_z_b2_out: out data port;
-		
-		thu_a_b1_in: in data port thrust;
-		thu_b_b1_in: in data port thrust;
-		thu_c_b1_in: in data port thrust;
-		thu_d_b1_in: in data port thrust;
-		thu_a_b2_in: in data port thrust;
-		thu_b_b2_in: in data port thrust;
-		thu_c_b2_in: in data port thrust;
-		thu_d_b2_in: in data port thrust;
-		
-		thu_a_b1_out: out data port thrust;
-		thu_b_b1_out: out data port thrust;
-		thu_c_b1_out: out data port thrust;
-		thu_d_b1_out: out data port thrust;
-		thu_a_b2_out: out data port thrust;
-		thu_b_b2_out: out data port thrust;
-		thu_c_b2_out: out data port thrust;
-		thu_d_b2_out: out data port thrust;
-		
-		ang_x_b1_in: in data port radians;
-		ang_y_b1_in: in data port radians;
-		ang_z_b1_in: in data port radians;
-		ang_x_b2_in: in data port radians;
-		ang_y_b2_in: in data port radians;
-		ang_z_b2_in: in data port radians;
-		
-		ang_x_b1_out: out data port radians;
-		ang_y_b1_out: out data port radians;
-		ang_z_b1_out: out data port radians;
-		ang_x_b2_out: out data port radians;
-		ang_y_b2_out: out data port radians;
-		ang_z_b2_out: out data port radians;
-		
-		comm: requires bus access CommBus1;
-		comm: requires bus access CommBus2;
-	
 	end Computer;
 	
 end hardware;
