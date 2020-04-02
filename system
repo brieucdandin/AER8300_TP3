@@ -1,5 +1,8 @@
 package system
 public
+
+	device implementation Watchdog.impl
+	end Watchdog.impl;
 	
 	device implementation SunSensor.impl
 		properties
@@ -292,6 +295,7 @@ public
 			contrOrb: process OrbitController;
 			telemt: process Telemetry;
 			telecmd: process Telecommand;
+			wdg: device Watchdog;
 			
 		connections
 			SnCpAttX1: port sensAtt.rot_x_b1 -> cpu.rot_x_b1_in;
@@ -344,6 +348,8 @@ public
 			CnCpOrbB2: port contrOrb.thu_b_b2 -> cpu.thu_b_b2_in;
 			CnCpOrbC2: port contrOrb.thu_c_b2 -> cpu.thu_c_b2_in;
 			
+			CpWdgRst: port cpu.to_watchdog -> wdg.test;
+			WdgCpRst: port wdg.reset -> cpu.reset;
 			
 			CpAcAttX1: port cpu.ang_x_b1_out -> act.ang_x_b1;
 			CpAcAttY1: port cpu.ang_y_b1_out -> act.ang_y_b1;
