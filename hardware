@@ -4,7 +4,7 @@ public
 	device Watchdog
 		features
 			test: in data port;
-			reset: out event port;
+			reset: out data port Standard::Boolean;
 		flows
 			fl_in: flow source test {latency => 1ms .. 2ms;};
 			fl_out: flow sink test {latency => 1ms .. 2ms;};
