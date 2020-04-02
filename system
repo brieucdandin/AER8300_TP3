@@ -6,13 +6,15 @@ public
 	
 	device implementation SunSensor.impl
 		properties
-			Period => 100ms;
+			Period => 10ms;
 	end SunSensor.impl;
 	
 	device implementation ReactionWheel.impl
 	end ReactionWheel.impl;
 	
 	device implementation GPSReceiver.impl
+	properties
+			Period => 10ms;
 	end GPSReceiver.impl;
 	
 	device implementation Thruster.impl
@@ -298,6 +300,9 @@ public
 			wdg: device Watchdog;
 			
 		connections
+		
+			-- Connections sensors -> cpu
+			
 			SnCpAttX1: port sensAtt.rot_x_b1 -> cpu.rot_x_b1_in;
 			SnCpAttY1: port sensAtt.rot_y_b1 -> cpu.rot_y_b1_in;
 			SnCpAttZ1: port sensAtt.rot_z_b1 -> cpu.rot_z_b1_in;
@@ -305,6 +310,7 @@ public
 			SnCpAttX2: port sensAtt.rot_x_b2 -> cpu.rot_x_b2_in;
 			SnCpAttY2: port sensAtt.rot_y_b2 -> cpu.rot_y_b2_in;
 			SnCpAttZ2: port sensAtt.rot_z_b2 -> cpu.rot_z_b2_in;
+			
 			
 			SnCpOrbX1: port sensOrb.pos_x_b1 -> cpu.pos_x_b1_in;
 			SnCpOrbY1: port sensOrb.pos_y_b1 -> cpu.pos_y_b1_in;
@@ -315,6 +321,8 @@ public
 			SnCpOrbZ2: port sensOrb.pos_z_b2 -> cpu.pos_z_b2_in;
 		
 			
+			-- Connections cpu -> process
+			
 			CpCnAttX1: port cpu.rot_x_b1_out -> contrAtt.rot_x_b1;
 			CpCnAttY1: port cpu.rot_y_b1_out -> contrAtt.rot_y_b1;
 			CpCnAttZ1: port cpu.rot_z_b1_out -> contrAtt.rot_z_b1;
@@ -322,6 +330,7 @@ public
 			CpCnAttX2: port cpu.rot_x_b2_out -> contrAtt.rot_x_b2;
 			CpCnAttY2: port cpu.rot_y_b2_out -> contrAtt.rot_y_b2;
 			CpCnAttZ2: port cpu.rot_z_b2_out -> contrAtt.rot_z_b2;
+			
 			
 			CpCnOrbX1: port cpu.pos_x_b1_out -> contrOrb.pos_x_b1;
 			CpCnOrbY1: port cpu.pos_y_b1_out -> contrOrb.pos_y_b1;
@@ -331,6 +340,48 @@ public
 			CpCnOrbY2: port cpu.pos_y_b2_out -> contrOrb.pos_y_b2;
 			CpCnOrbZ2: port cpu.pos_z_b2_out -> contrOrb.pos_z_b2;
 			
+			
+			CpCnTCRotX: port cpu.rot_x_ref_out -> telecmd.rot_x_ref_in;
+			CpCnTCRotY: port cpu.rot_y_ref_out -> telecmd.rot_y_ref_in;
+			CpCnTCRotZ: port cpu.rot_z_ref_out -> telecmd.rot_z_ref_in;
+			
+			CpCnTCPosX: port cpu.pos_x_ref_out -> telecmd.pos_x_ref_in;
+			CpCnTCPosY: port cpu.pos_y_ref_out -> telecmd.pos_y_ref_in;
+			CpCnTCPosZ: port cpu.pos_z_ref_out -> telecmd.pos_z_ref_in;
+			
+			CpCnTMRotX1: port cpu.rot_x_b1_out -> telemt.rot_x_b1_in;
+			CpCnTMRotY1: port cpu.rot_y_b1_out -> telemt.rot_y_b1_in;
+			CpCnTMRotZ1: port cpu.rot_z_b1_out -> telemt.rot_z_b1_in;
+			
+			CpCnTMRotX2: port cpu.rot_x_b2_out -> telemt.rot_x_b2_in;
+			CpCnTMRotY2: port cpu.rot_y_b2_out -> telemt.rot_y_b2_in;
+			CpCnTMRotZ2: port cpu.rot_z_b2_out -> telemt.rot_z_b2_in;
+			
+			CpCnTMAngX1: port cpu.ang_x_b1_out -> telemt.ang_x_b1_in;
+			CpCnTMAngY1: port cpu.ang_y_b1_out -> telemt.ang_y_b1_in;
+			CpCnTMAngZ1: port cpu.ang_z_b1_out -> telemt.ang_z_b1_in;
+			
+			CpCnTMAngX2: port cpu.ang_x_b2_out -> telemt.ang_x_b2_in;
+			CpCnTMAngY2: port cpu.ang_y_b2_out -> telemt.ang_y_b2_in;
+			CpCnTMAngZ2: port cpu.ang_z_b2_out -> telemt.ang_z_b2_in;
+			
+			CpCnTMPosX1: port cpu.pos_x_b1_out -> telemt.pos_x_b1_in;
+			CpCnTMPosY1: port cpu.pos_y_b1_out -> telemt.pos_y_b1_in;
+			CpCnTMPosZ1: port cpu.pos_z_b1_out -> telemt.pos_z_b1_in;
+			
+			CpCnTMPosX2: port cpu.pos_x_b2_out -> telemt.pos_x_b2_in;
+			CpCnTMPosY2: port cpu.pos_y_b2_out -> telemt.pos_y_b2_in;
+			CpCnTMPosZ2: port cpu.pos_z_b2_out -> telemt.pos_z_b2_in;
+			
+			CpCnTMThuA1: port cpu.thu_a_b1_out -> telemt.thu_a_b1_in;
+			CpCnTMThuB1: port cpu.thu_b_b1_out -> telemt.thu_b_b1_in;
+			CpCnTMThuC1: port cpu.thu_c_b1_out -> telemt.thu_c_b1_in;
+			
+			CpCnTMThuA2: port cpu.thu_a_b2_out -> telemt.thu_a_b2_in;
+			CpCnTMThuB2: port cpu.thu_b_b2_out -> telemt.thu_b_b2_in;
+			CpCnTMThuC2: port cpu.thu_c_b2_out -> telemt.thu_c_b2_in;
+			
+			-- Connections process -> cpu
 			
 			CnCpAttX1: port contrAtt.ang_x_b1 -> cpu.ang_x_b1_in;
 			CnCpAttY1: port contrAtt.ang_y_b1 -> cpu.ang_y_b1_in;
@@ -348,8 +399,53 @@ public
 			CnCpOrbB2: port contrOrb.thu_b_b2 -> cpu.thu_b_b2_in;
 			CnCpOrbC2: port contrOrb.thu_c_b2 -> cpu.thu_c_b2_in;
 			
+			CnCpTCRotX: port telecmd.rot_x_ref_out -> cpu.rot_x_ref_in;
+			CnCpTCRotY: port telecmd.rot_y_ref_out -> cpu.rot_y_ref_in;
+			CnCpTCRotZ: port telecmd.rot_z_ref_out -> cpu.rot_z_ref_in;
+			
+			
+			CnCpTCPosX: port telecmd.pos_x_ref_out -> cpu.pos_x_ref_in;
+			CnCpTCPosY: port telecmd.pos_y_ref_out -> cpu.pos_y_ref_in;
+			CnCpTCPosZ: port telecmd.pos_z_ref_out -> cpu.pos_z_ref_in;
+			
+					
+			CnCpTMRotX1: port telemt.rot_x_b1_out -> cpu.rot_x_b1_in;
+			CnCpTMRotY1: port telemt.rot_y_b1_out -> cpu.rot_y_b1_in;
+			CnCpTMRotZ1: port telemt.rot_z_b1_out -> cpu.rot_z_b1_in;
+			
+			CnCpTMRotX2: port telemt.rot_x_b2_out -> cpu.rot_x_b2_in;
+			CnCpTMRotY2: port telemt.rot_y_b2_out -> cpu.rot_y_b2_in;
+			CnCpTMRotZ2: port telemt.rot_z_b2_out -> cpu.rot_z_b2_in;
+			
+			CnCpTMAngX1: port telemt.ang_x_b1_out -> cpu.ang_x_b1_in;
+			CnCpTMAngY1: port telemt.ang_y_b1_out -> cpu.ang_y_b1_in;
+			CnCpTMAngZ1: port telemt.ang_z_b1_out -> cpu.ang_z_b1_in;
+			
+			CnCpTMAngX2: port telemt.ang_x_b2_out -> cpu.ang_x_b2_in;
+			CnCpTMAngY2: port telemt.ang_y_b2_out -> cpu.ang_y_b2_in;
+			CnCpTMAngZ2: port telemt.ang_z_b2_out -> cpu.ang_z_b2_in;
+			
+			CnCpTMPosX1: port telemt.pos_x_b1_out -> cpu.pos_x_b1_in;
+			CnCpTMPosY1: port telemt.pos_y_b1_out -> cpu.pos_y_b1_in;
+			CnCpTMPosZ1: port telemt.pos_z_b1_out -> cpu.pos_z_b1_in;
+			
+			CnCpTMPosX2: port telemt.pos_x_b2_out -> cpu.pos_x_b2_in;
+			CnCpTMPosY2: port telemt.pos_y_b2_out -> cpu.pos_y_b2_in;
+			CnCpTMPosZ2: port telemt.pos_z_b2_out -> cpu.pos_z_b2_in;
+			
+			CnCpTMThuA1: port telemt.thu_a_b1_out -> cpu.thu_a_b1_in;
+			CnCpTMThuB1: port telemt.thu_b_b1_out -> cpu.thu_b_b1_in;
+			CnCpTMThuC1: port telemt.thu_c_b1_out -> cpu.thu_c_b1_in;
+			
+			CnCpTMThuA2: port telemt.thu_a_b2_out -> cpu.thu_a_b2_in;
+			CnCpTMThuB2: port telemt.thu_b_b2_out -> cpu.thu_b_b2_in;
+			CnCpTMThuC2: port telemt.thu_c_b2_out -> cpu.thu_c_b2_in;
+			
+						
 			CpWdgRst: port cpu.to_watchdog -> wdg.test;
 			WdgCpRst: port wdg.reset -> cpu.reset;
+			
+			-- Connections cpu -> actuators
 			
 			CpAcAttX1: port cpu.ang_x_b1_out -> act.ang_x_b1;
 			CpAcAttY1: port cpu.ang_y_b1_out -> act.ang_y_b1;
