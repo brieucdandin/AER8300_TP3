@@ -27,7 +27,7 @@ public
 			-- Primary computer
 			
 			reset_Primary: event port Primary.reset -> reset refined to event port in modes ( Primarymode );
-			to_watchdog_Primary: data port Primary.to_watchdog -> to_watchdog refined to data port in modes ( Primarymode );
+			to_watchdog_Primary: event port Primary.to_watchdog -> to_watchdog refined to event port in modes ( Primarymode );
 			
 			rot_x_b1_in_Primary: data port Primary.rot_x_b1_in -> rot_x_b1_in refined to data port in modes ( Primarymode );
 			rot_y_b1_in_Primary: data port Primary.rot_y_b1_in -> rot_y_b1_in refined to data port in modes ( Primarymode );
@@ -88,7 +88,7 @@ public
 			-- Secondary computer
 			
 			reset_Secondary: event port Secondary.reset -> reset refined to event port in modes ( Secondarymode );
-			to_watchdog_Secondary: data port Secondary.to_watchdog -> to_watchdog refined to data port in modes ( Secondarymode );
+			to_watchdog_Secondary: event port Secondary.to_watchdog -> to_watchdog refined to event port in modes ( Secondarymode );
 			
 			rot_x_b1_in_Secondary: data port Secondary.rot_x_b1_in -> rot_x_b1_in refined to data port in modes ( Secondarymode );
 			rot_y_b1_in_Secondary: data port Secondary.rot_y_b1_in -> rot_y_b1_in refined to data port in modes ( Secondarymode );
