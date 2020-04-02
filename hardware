@@ -89,6 +89,7 @@ public
 	
 	device Computer
 		features
+			reset: in data port Standard::Boolean;
 			to_watchdog: out data port;
 			
 			rot_x_b1_in: in data port;
