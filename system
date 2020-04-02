@@ -23,7 +23,7 @@ public
 		connections
 			-- Primary computer
 			
-			reset_Primary: data port Primary.reset -> reset refined to data port in modes ( Primarymode );
+			reset_Primary: event port Primary.reset -> reset refined to event port in modes ( Primarymode );
 			to_watchdog_Primary: data port Primary.to_watchdog -> to_watchdog refined to data port in modes ( Primarymode );
 			
 			rot_x_b1_in_Primary: data port Primary.rot_x_b1_in -> rot_x_b1_in refined to data port in modes ( Primarymode );
@@ -82,13 +82,9 @@ public
 			pos_y_b2_out_Primary: data port pos_y_b2_out -> Primary.pos_y_b2_out refined to data port in modes ( Primarymode );
 			pos_z_b2_out_Primary: data port pos_z_b2_out -> Primary.pos_z_b2_out refined to data port in modes ( Primarymode );
 			
-			--TODO
-			comm1: requires bus access CommBus1;
-			comm2: requires bus access CommBus2;
-			
 			-- Secondary computer
 			
-			reset_Secondary: data port Secondary.reset -> reset refined to data port in modes ( Secondarymode );
+			reset_Secondary: event port Secondary.reset -> reset refined to event port in modes ( Secondarymode );
 			to_watchdog_Secondary: data port Secondary.to_watchdog -> to_watchdog refined to data port in modes ( Secondarymode );
 			
 			rot_x_b1_in_Secondary: data port Secondary.rot_x_b1_in -> rot_x_b1_in refined to data port in modes ( Secondarymode );
@@ -146,10 +142,6 @@ public
 			pos_x_b2_out_Secondary: data port pos_x_b2_out -> Secondary.pos_x_b2_out refined to data port in modes ( Secondarymode );
 			pos_y_b2_out_Secondary: data port pos_y_b2_out -> Secondary.pos_y_b2_out refined to data port in modes ( Secondarymode );
 			pos_z_b2_out_Secondary: data port pos_z_b2_out -> Secondary.pos_z_b2_out refined to data port in modes ( Secondarymode );
-			
-			-- TODO
-			comm1: requires bus access CommBus1;
-			comm2: requires bus access CommBus2;
 		modes
 			Primarymode: initial mode;
 			Secondarymode: mode;
